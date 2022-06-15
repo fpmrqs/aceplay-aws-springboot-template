@@ -13,15 +13,15 @@ import java.util.UUID;
 // https://www.youtube.com/watch?v=vreyOZxdb5Y&t=810s
 @RestController
 public class StorageController {
-  @Autowired private GoogleStorageService googleStorageService;
+  @Autowired private AwsStorageService awsStorageService;
 
   @GetMapping("/api/storage/upload_key")
   public TrackUploadKeyDto getTrackUploadKey(
       @RequestParam String filename, @RequestParam String contentType)
       throws IOException, InvalidProposedMimeType {
     String uploadedFilename = makeUniqueFilename(filename);
-    URL signedUploadUrl = googleStorageService.makeSignedUploadUrl(uploadedFilename, contentType);
-    URL publicUrl = googleStorageService.getPublicUrl(uploadedFilename);
+    URL signedUploadUrl = awsStorageService.makeSignedUploadUrl(uploadedFilename, contentType);
+    URL publicUrl = awsStorageService.getPublicUrl(uploadedFilename);
     return new TrackUploadKeyDto(publicUrl, signedUploadUrl);
   }
 

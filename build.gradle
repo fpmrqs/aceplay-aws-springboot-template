@@ -5,13 +5,13 @@
 plugins {
   id 'org.springframework.boot' version '2.5.2'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-  id 'com.google.cloud.tools.appengine' version '2.4.2'
   id 'java'
 }
 
-group = 'tech.makers'
+group = "tech.makers"
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11' // This is the version of Java we're targetting
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
   mavenCentral()
@@ -63,15 +63,4 @@ test {
 
 bootRun {
   systemProperty 'spring.profiles.active', 'dev'
-}
-
-appengine {
-  stage {
-    artifact = "build/libs/aceplay-0.0.1-SNAPSHOT.jar"
-  }
-
-  deploy {
-    version = "GCLOUD_CONFIG"
-    projectId = "GCLOUD_CONFIG"
-  }
 }
