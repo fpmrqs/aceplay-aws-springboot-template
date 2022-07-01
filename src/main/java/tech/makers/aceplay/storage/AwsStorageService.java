@@ -83,23 +83,6 @@ public class AwsStorageService {
 
   }
 
-  // public URL makeSignedUploadUrl(String filename, String contentType)
-  // throws IOException, InvalidProposedMimeType {
-  // validateUploadContentType(contentType);
-
-  // Storage storage = makeStorage();
-  // BlobInfo blobInfo = makeBlobInfo(filename);
-
-  // Map<String, String> extensionHeaders = makeHeaders(contentType);
-  // return storage.signUrl(
-  // blobInfo,
-  // 15,
-  // TimeUnit.MINUTES,
-  // Storage.SignUrlOption.httpMethod(HttpMethod.PUT),
-  // Storage.SignUrlOption.withExtHeaders(extensionHeaders),
-  // Storage.SignUrlOption.withV4Signature());
-  // }
-
   public URL getPublicUrl(String filename) throws MalformedURLException {
     return new URL(STORAGE_URL + awsBucketName + "/" + filename);
   }
