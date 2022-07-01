@@ -72,10 +72,12 @@ public class AwsStorageService {
     expTimeMillis += 1000 * 60 * 60;
     expiration.setTime(expTimeMillis);
 
-    // // Generate the presigned URL.
-    // GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
-    //     .withMethod(HttpMethod.GET)
-    //     .withExpiration(expiration);
+    // Generate the presigned URL.
+    GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
+        .withMethod(HttpMethod.GET)
+        .withExpiration(expiration);
+
+    generatePresignedUrlRequest.setContentType(contentType);
 
     // return s3Client.generatePresignedUrl(generatePresignedUrlRequest);
 
@@ -85,12 +87,6 @@ public class AwsStorageService {
 
   public URL getPublicUrl(String filename) throws MalformedURLException {
     return new URL(STORAGE_URL + awsBucketName + "/" + filename);
-  }
-
-  private Map<String, String> makeHeaders(String contentType) {
-    Map<String, String> extensionHeaders = new HashMap<>();
-    extensionHeaders.put("Content-Type", contentType);
-    return extensionHeaders;
   }
 
   private AmazonS3 makeClient() throws IOException {
