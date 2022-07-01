@@ -20,8 +20,6 @@ public class StorageController {
       @RequestParam String filename, @RequestParam String contentType)
       throws IOException, InvalidProposedMimeType {
     String uploadedFilename = makeUniqueFilename(filename);
-    System.out.println(uploadedFilename);
-    System.out.println(contentType);
     URL signedUploadUrl = awsStorageService.makeSignedUploadUrl(uploadedFilename, contentType);
     URL publicUrl = awsStorageService.getPublicUrl(uploadedFilename);
     return new TrackUploadKeyDto(publicUrl, signedUploadUrl);

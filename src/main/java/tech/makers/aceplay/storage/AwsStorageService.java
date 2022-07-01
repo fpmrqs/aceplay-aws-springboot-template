@@ -5,6 +5,7 @@ import org.apache.tika.*;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.*;
@@ -33,6 +34,8 @@ public class AwsStorageService {
   private static final String[] ACCEPTABLE_FILE_TYPES = new String[] { "audio/mpeg", "audio/x-aiff", "audio/vnd.wav", "audio/ogg", "audio/vorbis" };
   private static final String STORAGE_URL = "http://s3.amazonaws.com/";
 
+  @Autowired private AmazonS3 s3Client;
+
   @Value("${aws.bucketName}")
   private String awsBucketName;
 
@@ -48,7 +51,6 @@ public class AwsStorageService {
       }
     });
     try {
-      AmazonS3 s3Client = makeClient();
       s3Client.putObject(path, fileName, inputStream, objectMetadata);
     } catch (AmazonServiceException e) {
       throw new IllegalStateException("Failed to upload the file", e);
@@ -61,8 +63,7 @@ public class AwsStorageService {
     // Check that the provided content type matches our list of acceptable formats
     validateUploadContentType(contentType);
 
-    // Make an AWS S3 Client
-    AmazonS3 s3Client = makeClient();
+    // Set s3 Properties
     String bucketName = awsBucketName;
     String objectKey = filename;
 
@@ -77,24 +78,14 @@ public class AwsStorageService {
         .withMethod(HttpMethod.GET)
         .withExpiration(expiration);
 
+    // Set the content type header on the file
     generatePresignedUrlRequest.setContentType(contentType);
 
-    // return s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-
-    return new URL("http", "test.com", "octopus/test");
-
+    return s3Client.generatePresignedUrl(generatePresignedUrlRequest);
   }
 
   public URL getPublicUrl(String filename) throws MalformedURLException {
     return new URL(STORAGE_URL + awsBucketName + "/" + filename);
-  }
-
-  private AmazonS3 makeClient() throws IOException {
-    Regions clientRegion = Regions.EU_WEST_2;
-    return AmazonS3ClientBuilder.standard()
-        .withRegion(clientRegion)
-        .withCredentials(new ProfileCredentialsProvider())
-        .build();
   }
 
   private void validateUploadContentType(String contentType) throws InvalidProposedMimeType {
