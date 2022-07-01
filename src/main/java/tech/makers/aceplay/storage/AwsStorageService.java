@@ -57,16 +57,20 @@ public class AwsStorageService {
 
   public URL makeSignedUploadUrl(String filename, String contentType)
       throws IOException, InvalidProposedMimeType {
-    validateUploadContentType(contentType);
-    // AmazonS3 s3Client = makeClient();
-    // String bucketName = awsBucketName;
-    // String objectKey = filename;
 
-    // // Set the presigned URL to expire after one hour.
-    // java.util.Date expiration = new java.util.Date();
-    // long expTimeMillis = Instant.now().toEpochMilli();
-    // expTimeMillis += 1000 * 60 * 60;
-    // expiration.setTime(expTimeMillis);
+    // Check that the provided content type matches our list of acceptable formats
+    validateUploadContentType(contentType);
+
+    // Make an AWS S3 Client
+    AmazonS3 s3Client = makeClient();
+    String bucketName = awsBucketName;
+    String objectKey = filename;
+
+    // Set the presigned URL to expire after one hour.
+    java.util.Date expiration = new java.util.Date();
+    long expTimeMillis = Instant.now().toEpochMilli();
+    expTimeMillis += 1000 * 60 * 60;
+    expiration.setTime(expTimeMillis);
 
     // // Generate the presigned URL.
     // GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
