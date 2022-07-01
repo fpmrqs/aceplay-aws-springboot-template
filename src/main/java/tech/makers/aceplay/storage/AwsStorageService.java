@@ -31,31 +31,13 @@ import java.util.concurrent.TimeUnit;
 // https://www.youtube.com/watch?v=vreyOZxdb5Y&t=1084s
 @Service
 public class AwsStorageService {
-  private static final String[] ACCEPTABLE_FILE_TYPES = new String[] { "audio/mpeg", "audio/x-aiff", "audio/vnd.wav", "audio/ogg", "audio/vorbis" };
-  private static final String STORAGE_URL = "http://s3.amazonaws.com/";
+  private static final String[] ACCEPTABLE_FILE_TYPES = new String[] { "audio/mpeg", "audio/x-aiff", "audio/wave", "audio/wav", "audio/vnd.wav", "audio/ogg", "audio/vorbis" };
+  private static final String STORAGE_URL = "s3.eu-west-2.amazonaws.com";
 
   @Autowired private AmazonS3 s3Client;
 
   @Value("${aws.bucketName}")
   private String awsBucketName;
-
-  public void upload(String path,
-      String fileName,
-      Optional<Map<String, String>> optionalMetaData,
-      InputStream inputStream) throws IOException {
-
-    ObjectMetadata objectMetadata = new ObjectMetadata();
-    optionalMetaData.ifPresent(map -> {
-      if (!map.isEmpty()) {
-        map.forEach(objectMetadata::addUserMetadata);
-      }
-    });
-    try {
-      s3Client.putObject(path, fileName, inputStream, objectMetadata);
-    } catch (AmazonServiceException e) {
-      throw new IllegalStateException("Failed to upload the file", e);
-    }
-  }
 
   public URL makeSignedUploadUrl(String filename, String contentType)
       throws IOException, InvalidProposedMimeType {
@@ -73,6 +55,8 @@ public class AwsStorageService {
     expTimeMillis += 1000 * 60 * 60;
     expiration.setTime(expTimeMillis);
 
+    System.out.println(awsBucketName);
+
     // Generate the presigned URL.
     GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
         .withMethod(HttpMethod.GET)
@@ -85,7 +69,7 @@ public class AwsStorageService {
   }
 
   public URL getPublicUrl(String filename) throws MalformedURLException {
-    return new URL(STORAGE_URL + awsBucketName + "/" + filename);
+    return new URL(String.format("https://%s.%s/%s", awsBucketName, STORAGE_URL, filename));
   }
 
   private void validateUploadContentType(String contentType) throws InvalidProposedMimeType {
