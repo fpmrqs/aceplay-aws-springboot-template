@@ -1,6 +1,6 @@
 package tech.makers.aceplay.storage;
 
-import com.google.common.io.Files;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,14 +20,16 @@ public class StorageController {
       @RequestParam String filename, @RequestParam String contentType)
       throws IOException, InvalidProposedMimeType {
     String uploadedFilename = makeUniqueFilename(filename);
+    System.out.println(uploadedFilename);
+    System.out.println(contentType);
     URL signedUploadUrl = awsStorageService.makeSignedUploadUrl(uploadedFilename, contentType);
     URL publicUrl = awsStorageService.getPublicUrl(uploadedFilename);
     return new TrackUploadKeyDto(publicUrl, signedUploadUrl);
   }
 
   private String makeUniqueFilename(String filename) {
-    String extension = Files.getFileExtension(filename);
-    String basename = Files.getNameWithoutExtension(filename);
+    String extension = FilenameUtils.getExtension(filename);
+    String basename = FilenameUtils.removeExtension(filename);
     String uuid = UUID.randomUUID().toString();
     return String.format("%s-%s.%s", basename, uuid, extension);
   }
