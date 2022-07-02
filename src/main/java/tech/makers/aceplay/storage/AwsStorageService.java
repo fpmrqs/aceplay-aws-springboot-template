@@ -19,12 +19,15 @@ import java.util.Date;
 @Service
 public class AwsStorageService {
   private static final String[] ACCEPTABLE_FILE_TYPES = new String[] { "audio/mpeg", "audio/x-aiff", "audio/wave", "audio/wav", "audio/vnd.wav", "audio/ogg", "audio/vorbis" };
-  private static final String STORAGE_URL = "s3.eu-west-2.amazonaws.com";
+  private static final String AWS_URL_SUFFIX = "amazonaws.com";
 
   @Autowired private AmazonS3 s3Client;
 
   @Value("${aws.bucketName}")
   private String awsBucketName;
+
+  @Value("${aws.region}")
+  private String awsRegion;
 
   public URL makeSignedUploadUrl(String filename, String contentType)
       throws IOException, InvalidProposedMimeType {
@@ -48,7 +51,7 @@ public class AwsStorageService {
   }
 
   public URL getPublicUrl(String filename) throws MalformedURLException {
-    return new URL(String.format("https://%s.%s/%s", awsBucketName, STORAGE_URL, filename));
+    return new URL(String.format("https://%s.s3.%s.%s/%s", awsBucketName, awsRegion, AWS_URL_SUFFIX, filename));
   }
 
   private void validateUploadContentType(String contentType) throws InvalidProposedMimeType {

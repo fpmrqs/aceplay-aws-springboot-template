@@ -23,7 +23,7 @@ class AwsStorageServiceTest {
     URL result = subject.makeSignedUploadUrl("filename.mp3", "audio/mpeg");
     assertThat(
         result.toString(),
-        Matchers.startsWith("https://storage.googleapis.com/fake-bucket-name/filename.mp3?"));
+        Matchers.startsWith( "https://aws-bucket-name.s3.aws-region.amazonaws.com/filename.mp3?"));
   }
 
   @Test
@@ -36,6 +36,6 @@ class AwsStorageServiceTest {
   @Test
   void testGetPublicUrl() throws MalformedURLException {
     URL result = subject.getPublicUrl("filename.mp3");
-    assertEquals(new URL("https://storage.googleapis.com/fake-bucket-name/filename.mp3"), result);
+    assertEquals(new URL("https://aws-bucket-name.s3.aws-region.amazonaws.com/filename.mp3"), result);
   }
 }
