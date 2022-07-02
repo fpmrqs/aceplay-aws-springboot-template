@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2362s
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase

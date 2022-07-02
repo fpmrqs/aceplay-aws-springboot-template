@@ -19,7 +19,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=908s
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase

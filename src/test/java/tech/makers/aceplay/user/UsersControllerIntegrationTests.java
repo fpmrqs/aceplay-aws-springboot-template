@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=141s
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase

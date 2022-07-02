@@ -13,7 +13,6 @@ import tech.makers.aceplay.user.UserRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=651s
 @SpringBootTest
 @AutoConfigureTestDatabase
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)

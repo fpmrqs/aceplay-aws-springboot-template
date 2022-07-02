@@ -13,11 +13,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2075s
 @SpringBootTest
-class GoogleStorageServiceTest {
+class AwsStorageServiceTest {
 
-  @Autowired private GoogleStorageService subject;
+  @Autowired private AwsStorageService subject;
 
   @Test
   void testMakeSignedUploadUrl_withValidContentType() throws IOException, InvalidProposedMimeType {

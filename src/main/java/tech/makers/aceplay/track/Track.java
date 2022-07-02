@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=2999s
 @Entity
 public class Track {
   @Id

@@ -1,7 +1,5 @@
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2753s
 // This file sets up our project for the Gradle task runner and package manager
 // You mostly use it to add dependencies and libraries
-
 plugins {
   id 'org.springframework.boot' version '2.5.2'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'

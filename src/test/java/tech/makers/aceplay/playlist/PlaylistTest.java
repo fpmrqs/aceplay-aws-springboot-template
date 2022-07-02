@@ -8,7 +8,6 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=1099s
 class PlaylistTest {
   @Test
   void testConstructs() {

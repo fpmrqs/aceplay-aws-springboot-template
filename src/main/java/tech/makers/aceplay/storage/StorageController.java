@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.UUID;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=810s
 @RestController
 public class StorageController {
   @Autowired private AwsStorageService awsStorageService;

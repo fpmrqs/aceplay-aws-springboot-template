@@ -11,7 +11,6 @@ import javax.crypto.SecretKey;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=1456s
 class SessionSecretTest {
   @AfterEach
   void resetReflection() {

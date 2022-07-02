@@ -26,9 +26,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=1084s
 @Service
 public class AwsStorageService {
   private static final String[] ACCEPTABLE_FILE_TYPES = new String[] { "audio/mpeg", "audio/x-aiff", "audio/wave", "audio/wav", "audio/vnd.wav", "audio/ogg", "audio/vorbis" };
@@ -45,23 +45,16 @@ public class AwsStorageService {
     // Check that the provided content type matches our list of acceptable formats
     validateUploadContentType(contentType);
 
-    // Set s3 Properties
-    String bucketName = awsBucketName;
-    String objectKey = filename;
-
-    // Set the presigned URL to expire after one hour.
-    java.util.Date expiration = new java.util.Date();
-    long expTimeMillis = Instant.now().toEpochMilli();
-    expTimeMillis += 1000 * 60 * 60;
+    // Set the presigned URL to expire after one hour from now.
+    Date expiration = new Date();
+    long expTimeMillis = Instant.now().toEpochMilli() + (1000 * 60 * 60);
     expiration.setTime(expTimeMillis);
 
-    System.out.println(awsBucketName);
-
     // Generate the presigned URL.
-    GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey, HttpMethod.PUT)
+    GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(awsBucketName, filename, HttpMethod.PUT)
         .withExpiration(expiration);
 
-    // Set the content type header on the file
+    // Set the content type header on the file to match the file we received
     generatePresignedUrlRequest.setContentType(contentType);
 
     return s3Client.generatePresignedUrl(generatePresignedUrlRequest);

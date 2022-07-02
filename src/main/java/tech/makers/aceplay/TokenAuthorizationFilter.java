@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=451s
 public class TokenAuthorizationFilter extends OncePerRequestFilter {
   private static final String HEADER = "Authorization";
   private final JwtParser tokenParser =

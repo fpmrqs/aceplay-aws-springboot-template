@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2034s
 class InvalidProposedMimeTypeTest {
 
   @Test
