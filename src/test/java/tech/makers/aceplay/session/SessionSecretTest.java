@@ -3,8 +3,6 @@ package tech.makers.aceplay.session;
 import io.jsonwebtoken.io.Encoders;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.crypto.SecretKey;

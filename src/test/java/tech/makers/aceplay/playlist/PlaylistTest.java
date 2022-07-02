@@ -1,9 +1,7 @@
 package tech.makers.aceplay.playlist;
 
 import org.junit.jupiter.api.Test;
-import tech.makers.aceplay.playlist.Playlist;
 
-import java.net.MalformedURLException;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
