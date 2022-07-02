@@ -58,8 +58,7 @@ public class AwsStorageService {
     System.out.println(awsBucketName);
 
     // Generate the presigned URL.
-    GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey)
-        .withMethod(HttpMethod.GET)
+    GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, objectKey, HttpMethod.PUT)
         .withExpiration(expiration);
 
     // Set the content type header on the file
