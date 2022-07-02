@@ -18,8 +18,8 @@ public class SessionSecret {
   public SessionSecret(
       @Value("${spring.profiles.active:unknown}") String activeProfile,
       @Value("${jwt.token.secret:@null}") String secretKeyBase64Encoded) {
-      SessionSecret.activeProfile = activeProfile;
-      SessionSecret.secretKeyBase64Encoded = secretKeyBase64Encoded;
+      this.activeProfile = activeProfile;
+      this.secretKeyBase64Encoded = secretKeyBase64Encoded;
   }
 
   public static SecretKey getKey() {
