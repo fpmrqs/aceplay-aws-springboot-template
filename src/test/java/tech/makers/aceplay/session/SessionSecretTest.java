@@ -3,15 +3,12 @@ package tech.makers.aceplay.session;
 import io.jsonwebtoken.io.Encoders;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.annotation.Profile;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.crypto.SecretKey;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=1456s
 class SessionSecretTest {
   @AfterEach
   void resetReflection() {

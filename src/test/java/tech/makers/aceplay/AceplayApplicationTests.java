@@ -5,7 +5,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g
 @SpringBootTest
 class AceplayApplicationTests {
 

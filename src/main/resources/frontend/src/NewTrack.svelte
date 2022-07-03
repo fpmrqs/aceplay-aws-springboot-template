@@ -29,11 +29,12 @@
   }
 
   async function uploadTrackFile(url, file) {
+    console.log(file.type)
     let trackUploadRes = await fetch(url, {
         method: 'PUT',
         body: file,
         headers: {
-          'Content-Type': file.type
+          'Content-Type': file.type,
         }
       });
 

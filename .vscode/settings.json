@@ -1,0 +1,11 @@
+{
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.test.config": {
+    "name": "test",
+    "workingDirectory": "${workspaceFolder}",
+    "env": { 
+      "spring.config.location": "${workspaceFolder}/src/test/resources/",
+      "spring.profiles.active": "test"
+    },
+  }
+}

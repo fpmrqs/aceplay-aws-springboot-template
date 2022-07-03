@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=1156s
 @Entity
 @Table(
     name = "aceplay_user",

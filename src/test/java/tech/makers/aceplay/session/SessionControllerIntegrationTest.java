@@ -18,7 +18,6 @@ import tech.makers.aceplay.user.UserRepository;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=1853s
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase

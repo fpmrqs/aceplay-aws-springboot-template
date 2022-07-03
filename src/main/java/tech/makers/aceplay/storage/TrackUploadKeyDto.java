@@ -2,7 +2,6 @@ package tech.makers.aceplay.storage;
 
 import java.net.URL;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=1010s
 class TrackUploadKeyDto {
   private URL signedUploadUrl;
   private URL publicUrl;

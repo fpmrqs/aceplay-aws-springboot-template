@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.security.Principal;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=1554s
 @RestController
 public class SessionsController {
   @Autowired private UserRepository userRepository;

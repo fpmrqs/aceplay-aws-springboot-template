@@ -7,7 +7,6 @@ import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2003s
 class TrackUploadKeyDtoTest {
   @Test
   void testConstructs() throws MalformedURLException {

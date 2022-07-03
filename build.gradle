@@ -1,16 +1,15 @@
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=2753s
 // This file sets up our project for the Gradle task runner and package manager
 // You mostly use it to add dependencies and libraries
-
 plugins {
   id 'org.springframework.boot' version '2.5.2'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
-group = 'tech.makers'
+group = "tech.makers"
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11' // This is the version of Java we're targetting
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 repositories {
   mavenCentral()
@@ -18,12 +17,21 @@ repositories {
 
 // Here are all of our dependencies!
 dependencies {
+  // Set up AWS Cloud
+  implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+
   // The JPA Object-Relational Mapper, for accessing Postgres
   implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   runtimeOnly 'org.postgresql:postgresql'
 
   // Spring can do many things. We want it to run a web application, so we depend on that part.
   implementation 'org.springframework.boot:spring-boot-starter-web'
+
+  // Use AWS RDS to use a remote database in production
+  implementation 'com.amazonaws:aws-java-sdk-rdsdata'
+
+  // Use AWS s3 to store data in the cloud
+  implementation 'com.amazonaws:aws-java-sdk-s3'
 
   // Use Spring Security to implement login and signup
   implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -38,6 +46,9 @@ dependencies {
           // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
           //'org.bouncycastle:bcprov-jdk15on:1.60',
           'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
+
+  // Get apache commons utils
+  implementation "commons-io:commons-io:+"
 
   // Basic test support via spring-boot-starter-test
   testImplementation 'org.springframework.boot:spring-boot-starter-test'

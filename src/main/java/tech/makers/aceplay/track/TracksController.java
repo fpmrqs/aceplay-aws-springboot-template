@@ -6,7 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=2410s
 @RestController
 public class TracksController {
   @Autowired private TrackRepository trackRepository;

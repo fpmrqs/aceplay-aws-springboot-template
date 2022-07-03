@@ -2,7 +2,6 @@ package tech.makers.aceplay.session;
 
 import tech.makers.aceplay.user.User;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=2364s
 public class Session {
   private User user;
   private String token;
