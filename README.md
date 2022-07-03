@@ -1,4 +1,4 @@
-# Makers Aceplay Spring Boot & Google Cloud Seed
+# Makers Aceplay Spring Boot & AWS Seed
 
 This is a seed project for the Aceplay Engineering Project.
 
@@ -9,7 +9,7 @@ It comes set up with:
 * The Spring Security framework & JWT for auth.
 * The PostgreSQL database.
 * The JPA ORM
-* Google Cloud for deployment and file hosting.
+* AWS for deployment and file hosting.
 
 Several features are implemented. Your task is to work through the tickets in
 the projects tab.
