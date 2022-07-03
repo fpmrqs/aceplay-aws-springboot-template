@@ -47,9 +47,6 @@ dependencies {
           //'org.bouncycastle:bcprov-jdk15on:1.60',
           'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
 
-  // Apache Tika for MIME Type Parsing without GCP
-  implementation 'org.apache.tika:tika-parsers:1.11'
-
   // Get apache commons utils
   implementation "commons-io:commons-io:+"
 
