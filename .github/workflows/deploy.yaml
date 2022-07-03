@@ -1,4 +1,4 @@
-name: Deploy to Google App Engine
+name: Deploy to AWS
 
 on:
   push:
@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
@@ -26,14 +26,33 @@ jobs:
         run: ./gradlew test
 
       - name: Build
-        run: ./gradlew appengineStage
+        run: ./gradlew jar
 
-      - name: Deploy
-        uses: google-github-actions/deploy-appengine@main
+      - name: Upload JAR
+        uses: actions/upload-artifact@v2
         with:
-          credentials: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          working_directory: build/staged-app
-
+          name: artifact
+          path: build/libs/aceplay-aws-0.0.1-SNAPSHOT.jar   
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download JAR
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v13
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          use_existing_version_if_available: false
+          application_name: makers-aceplay
+          environment_name: Makersaceplay-env
+          version_label: ${{github.SHA}}
+          region: eu-west-2
+          deployment_package: aceplay-aws-0.0.1-SNAPSHOT.jar
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
