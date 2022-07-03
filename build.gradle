@@ -65,3 +65,9 @@ test {
 bootRun {
   systemProperty 'spring.profiles.active', 'dev'
 }
+
+jar {
+  enabled = true
+  archiveClassifier = '' 
+  archiveBaseName = 'aceplay-aws'
+}
