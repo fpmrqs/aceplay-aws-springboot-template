@@ -9,9 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import javax.crypto.SecretKey;
 import java.util.Objects;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=1999s
-// Note: the below is slightly different to the video due to a mistake we made relating
-// to the Spring component lifecycle. The main principles are the same.
 @Configuration
 public class SessionSecret {
   private static String secretKeyBase64Encoded;
@@ -21,8 +18,8 @@ public class SessionSecret {
   public SessionSecret(
       @Value("${spring.profiles.active:unknown}") String activeProfile,
       @Value("${jwt.token.secret:@null}") String secretKeyBase64Encoded) {
-    this.activeProfile = activeProfile;
-    this.secretKeyBase64Encoded = secretKeyBase64Encoded;
+        this.activeProfile = activeProfile;
+        this.secretKeyBase64Encoded = secretKeyBase64Encoded;
   }
 
   public static SecretKey getKey() {

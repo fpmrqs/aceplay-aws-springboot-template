@@ -15,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import tech.makers.aceplay.user.UserDetailsServiceImpl;
 
-// https://www.youtube.com/watch?v=5r3QU09v7ig&t=128s
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

@@ -6,7 +6,6 @@ import tech.makers.aceplay.track.Track;
 import javax.persistence.*;
 import java.util.Set;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=448s
 @Entity
 public class Playlist {
   @Id

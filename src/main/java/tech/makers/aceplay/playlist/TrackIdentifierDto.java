@@ -1,6 +1,5 @@
 package tech.makers.aceplay.playlist;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=229s
 public class TrackIdentifierDto {
   private Long id;
 

@@ -8,7 +8,6 @@ import tech.makers.aceplay.track.TrackRepository;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
-// https://www.youtube.com/watch?v=vreyOZxdb5Y&t=0s
 @RestController
 public class PlaylistsController {
   @Autowired private PlaylistRepository playlistRepository;

@@ -5,7 +5,6 @@ import tech.makers.aceplay.user.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// https://www.youtube.com/watch?v=L4vkcgRnw2g&t=1445s
 class SessionTest {
   @Test
   void testConstructs() {
