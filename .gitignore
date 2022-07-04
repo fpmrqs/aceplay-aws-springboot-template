@@ -27,5 +27,5 @@ target/
 hs_err_pid*
 
 # Dev credentials
-/config/application-dev.properties
+# /config/application-dev.properties
 gcp-credentials.json
