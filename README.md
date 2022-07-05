@@ -1,6 +1,6 @@
 # Makers Aceplay Spring Boot & AWS Seed
 
-This is a seed project for the Aceplay Engineering Project.
+This is a seed project for the Aceplay Engineering project.
 
 It comes set up with:
 
